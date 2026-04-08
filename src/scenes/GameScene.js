@@ -8,5 +8,15 @@ export default class GameScene extends Phaser.Scene {
       fontSize: "32px",
       color: "#ffffff"
     });
+
+    this.input.on('pointerdown', (pointer) => {
+        console.log(pointer.x, pointer.y);
+    });
+
   }
+
+  update() {
+
+  }
+
 }
