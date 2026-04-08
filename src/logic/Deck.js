@@ -44,7 +44,44 @@ export default class Deck {
         }
     }
 
+    /**
+     * Method to draw the top n cards from the deck
+     * @param {integer} n -- the amount of cards to draw
+     * @returns a list of drawn cards
+     */
+    draw(n) {
+
+        const drawnCards = []
+
+        for (let i = 0; i < n; i++) {
+
+            const drawn = this.cards.pop()
+
+            if (drawn === undefined) {
+                // TODO refresh the deck when it runs out
+                console.log("The deck is empty!")
+            } else {
+                drawnCards.push(drawn)
+            }
+        }
+
+        return drawnCards
+    }
+
+    shuffle() {
+
+    }
+
+    sortBySuit() {
+        
+    }
+
     toString() {
         return this.cards.map(card => `${card.rank.label}${card.suit}`);
     }
+
+}
+
+export class Hand {
+
 }
