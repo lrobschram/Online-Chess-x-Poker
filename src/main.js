@@ -1,5 +1,6 @@
 import GameScene from "./scenes/GameScene.js";
-import { testDeckSize, testDeckDisplay, testDeckDraw } from "./tests/deckTests.js";
+import runDeckTests from "./tests/deckTests.js";
+import runHandTests from "./tests/handTests.js";
 
 const config = {
   type: Phaser.AUTO,
@@ -10,6 +11,5 @@ const config = {
 
 new Phaser.Game(config);
 
-// testDeckSize();
-// testDeckDisplay();
-testDeckDraw();
+runDeckTests();
+runHandTests();

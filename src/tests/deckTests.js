@@ -1,22 +1,28 @@
-import Deck from "../logic/Deck.js";
+import { Deck } from "../logic/Deck.js";
 
-export function testDeckSize() {
+export default function runDeckTests() {
+  console.log("~~~~Running Deck tests~~~~")
+  testDeckSize();
+  testDeckDraw();
+}
+
+function testDeckSize() {
   const deck = new Deck();
 
   if (deck.cards.length !== 52) {
-    console.log("Deck size test failed");
+    console.log("Deck size test FAILED");
   } else {
-    console.log("Deck size test passed");
+    console.log("Deck size test PASSED");
   }
 }
 
-export function testDeckDisplay() {
+function testDeckDisplay() {
   const deck = new Deck();
 
   console.log("Whole Deck:", deck.toString());
 }
 
-export function testDeckDraw() {
+function testDeckDraw() {
   const deck = new Deck();
   const draw1 = deck.draw(1);
 
@@ -32,7 +38,7 @@ export function testDeckDraw() {
     console.log("Drawing only 1 card test PASSED");
   }
 
-  console.log("1 Card drawn:", draw1);
+  // console.log("1 Card drawn:", draw1);
 
   const draw51 = deck.draw(52);
   
@@ -48,6 +54,12 @@ export function testDeckDraw() {
     console.log("Drawing all cards test PASSED");
   }
 
-  console.log("51 Cards drawn:", draw51);
+}
 
+function testShuffle() {
+
+}
+
+function testRefillDeck() {
+  
 }

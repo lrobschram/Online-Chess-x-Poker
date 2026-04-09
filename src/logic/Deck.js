@@ -22,7 +22,7 @@ const Rank = Object.freeze({
   ACE: { value: 14, label: "A" }
 });
 
-class Card {
+export class Card {
     constructor(suit, rank) {
         this.suit = suit;
         this.rank = rank;
@@ -33,7 +33,7 @@ class Card {
     }
 }
 
-export default class Deck {
+export class Deck {
     constructor() {
         this.cards = [];
 
@@ -83,5 +83,28 @@ export default class Deck {
 }
 
 export class Hand {
+    constructor(cards) {
+        this.cards = cards;
+    }
 
+    discard(indices) {
+
+    }
+
+    /**
+     * Takes a list off cards and adds them to the end of the current hand
+     * @param {List[Card]} newCards -- A list of cards to add to the hand
+     */
+    addCards(newCards) {
+        const copyHand = [...this.cards];
+        this.cards = copyHand.concat(newCards);
+    }
+
+    size() {
+        return this.cards.length;
+    }
+
+    toString() {
+        return this.cards.map(card => `${card.rank.label}${card.suit}`);
+    }
 }
