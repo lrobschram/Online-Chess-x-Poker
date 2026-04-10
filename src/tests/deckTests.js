@@ -1,4 +1,4 @@
-import { Deck } from "../logic/Deck.js";
+import Deck from "../logic/Deck.js";
 
 export default function runDeckTests() {
   console.log("~~~~Running Deck tests~~~~")
@@ -61,5 +61,5 @@ function testShuffle() {
 }
 
 function testRefillDeck() {
-  
+
 }

@@ -1,0 +1,11 @@
+
+export default class Card {
+    constructor(suit, rank) {
+        this.suit = suit;
+        this.rank = rank;
+    }
+    
+    toString() {
+        return `${this.rank.label}${this.suit}`;
+    }
+}

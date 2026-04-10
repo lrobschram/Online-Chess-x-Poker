@@ -1,4 +1,5 @@
-import { Hand, Card } from "../logic/Deck.js";
+import  Hand from "../logic/Hand.js";
+import Card from "../logic/Card.js";
 
 const Suit = Object.freeze({
   HEARTS: "♥",
@@ -27,6 +28,7 @@ export default function runHandTests() {
   console.log("~~~~Running Hand tests~~~~")
   testHandSize();
   testAddCards();
+  testDiscard();
 }
 
 function testHandSize() {
@@ -45,7 +47,31 @@ function testHandSize() {
 }
 
 function testDiscard() {
+    const d7 = new Card(Suit.DIAMONDS, Rank.SEVEN);
+    const ha = new Card(Suit.HEARTS, Rank.ACE)
+    const mockDeck = [ha, 
+                    new Card(Suit.CLUBS, Rank.JACK),
+                    d7,
+                    new Card(Suit.SPADES, Rank.THREE)];
 
+    const hand = new Hand(mockDeck);
+
+    hand.discard([0, 2]);
+
+    if (hand.size() !== 2) {
+        console.log("Hand size after discarding cards test FAILED");
+    } else {
+        console.log("Hand size after discarding cards test PASSED");
+    }
+
+    if (hand.cards.includes(d7)) {
+        console.log("Correct cards after discarding 2 cards test FAILED");
+    }
+    else if (hand.cards.includes(ha)) {
+        console.log("Correct cards after discarding 2 cards test FAILED");
+    } else {
+        console.log("Correct cards after discarding 2 cards test PASSED");
+    }
 }
 
 function testAddCards() {
