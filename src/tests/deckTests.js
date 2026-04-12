@@ -29,6 +29,7 @@ export default function runDeckTests() {
   testDeckSize();
   testDeckDraw();
   testExcludeCtor();
+  testSortBySuit();
 }
 
 function testDeckSize() {
@@ -111,10 +112,8 @@ function testExcludeCtor() {
   console.log("Deck excluded 4 cards test PASSED");
 }
 
-function testShuffle() {
-
-}
-
-function testRefillDeck() {
-
+function testSortBySuit() {
+  const deck = new Deck();
+  console.log(`Deck: ${deck.toString()}`);
+  console.log(`Sorted deck: ${deck.sortBySuit()}`);
 }

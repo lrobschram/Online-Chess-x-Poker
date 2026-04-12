@@ -1,9 +1,9 @@
-import Card from "./Card.js";
+import Card from "../logic/Card.js";
 
 const Suit = Object.freeze({
-  HEARTS: "♥",
-  DIAMONDS: "♦",
   CLUBS: "♣",
+  DIAMONDS: "♦",
+  HEARTS: "♥",
   SPADES: "♠"
 });
 
@@ -22,6 +22,13 @@ const Rank = Object.freeze({
   KING: { value: 13, label: "K" },
   ACE: { value: 14, label: "A" }
 });
+
+const suitOrder = {
+  "♣": 0,
+  "♦": 1,
+  "♥": 2,
+  "♠": 3
+};
 
 export default class Deck {
 
@@ -51,6 +58,8 @@ export default class Deck {
                 }
             }
         }
+
+        this.shuffle();
     }
 
     /**
@@ -77,16 +86,48 @@ export default class Deck {
         return drawnCards
     }
 
+    /**
+     * Shuffles the deck using the Fisher-Yates shuffle
+     */
     shuffle() {
+        for (let i = this.cards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
 
+            [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+        }
     }
 
+    /**
+     * Takes a copy of the current cards in the deck and 
+     * returns a list of cards sorted by first the suit then the rank
+     * @returns a sorted list of the current cards in the deck
+     */
     sortBySuit() {
-        
+        const sortedDeck = [...this.cards];
+
+        sortedDeck.sort((a, b) => {
+            const suitDiff = suitOrder[a.suit] - suitOrder[b.suit];
+
+            if (suitDiff !== 0) {
+                return suitDiff;
+            }
+
+            return b.rank.value - a.rank.value;
+        });
+
+        return sortedDeck;
     }
 
     toString() {
         return this.cards.map(card => `${card.rank.label}${card.suit}`);
+    }
+
+    printDeck() {
+        const arr = this.toString();
+
+        for (let i = 0; i < arr.length; i++) {
+            console.log(`${i}: ${arr[i]}`);
+        }
     }
 
 }

@@ -29,6 +29,7 @@ export default function runHandTests() {
   testHandSize();
   testAddCards();
   testDiscard();
+  testSorting();
 }
 
 function testHandSize() {
@@ -100,4 +101,22 @@ function testAddCards() {
     } else {
         console.log("Both cards added test PASSED")
     }
+}
+
+function testSorting() {
+    const mockDeck = [new Card(Suit.HEARTS, Rank.ACE), 
+                    new Card(Suit.CLUBS, Rank.JACK),
+                    new Card(Suit.DIAMONDS, Rank.SEVEN),
+                    new Card(Suit.SPADES, Rank.THREE),
+                    new Card(Suit.HEARTS, Rank.EIGHT),
+                    new Card(Suit.SPADES, Rank.SEVEN)];
+
+  const hand = new Hand(mockDeck);
+  console.log(`Init hand: ${hand.toString()}`);
+
+  hand.sortBySuit();
+  console.log(`Suit sort: ${hand.toString()}`);
+
+  hand.sortByRank();
+  console.log(`Rank sort: ${hand.toString()}`);
 }

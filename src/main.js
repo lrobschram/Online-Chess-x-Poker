@@ -12,4 +12,4 @@ const config = {
 new Phaser.Game(config);
 
 runDeckTests();
-// runHandTests();
+runHandTests();

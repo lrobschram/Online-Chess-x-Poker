@@ -1,4 +1,11 @@
 
+const suitOrder = {
+  "♣": 0,
+  "♦": 1,
+  "♥": 2,
+  "♠": 3
+};
+
 export default class Hand {
     constructor(cards) {
         this.cards = cards;
@@ -31,7 +38,45 @@ export default class Hand {
         return this.cards.length;
     }
 
+    /**
+     * Sorts the current hand first by suit then by rank
+     */
+    sortBySuit() {
+        this.cards.sort((a, b) => {
+            const suitDiff = suitOrder[a.suit] - suitOrder[b.suit];
+
+            if (suitDiff !== 0) {
+                return suitDiff;
+            }
+
+            return b.rank.value - a.rank.value;
+        });
+    }
+
+    /**
+     * Sorts the current hand first by rank then by suit
+     */
+    sortByRank() {
+        this.cards.sort((a, b) => {
+            const rankDiff = b.rank.value - a.rank.value;
+
+            if (rankDiff !== 0) {
+                return rankDiff;
+            }
+
+            return suitOrder[a.suit] - suitOrder[b.suit];
+        });
+    }
+
     toString() {
         return this.cards.map(card => `${card.rank.label}${card.suit}`);
+    }
+
+    printHand() {
+        const arr = this.toString();
+
+        for (let i = 0; i < arr.length; i++) {
+            console.log(`${i}: ${arr[i]}`);
+        }
     }
 }
