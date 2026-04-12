@@ -24,18 +24,37 @@ const Rank = Object.freeze({
 });
 
 export default class Deck {
-    constructor() {
+
+    /**
+     * Initializes a deck object with a list of 52 cards by default
+     * Can also to provide a list of cards to exclude from the deck
+     * @param {List[Card]} removeCards -- cards to exclude from the deck
+     */
+    constructor(removeCards = []) {
         this.cards = [];
 
         for (const rank of Object.values(Rank)) {
             for (const suit of Object.values(Suit)) {
-                this.cards.push( new Card(suit, rank) );
+
+                const toAdd = new Card(suit, rank);
+
+                let dontAdd = false;
+                for (const card of removeCards) {
+                    if (toAdd.isEqual(card)) {
+                        dontAdd = true;
+                        break;
+                    }
+                }
+
+                if (!dontAdd) {
+                    this.cards.push(toAdd);
+                }
             }
         }
     }
 
     /**
-     * Method to draw the top n cards from the deck
+     * Method to draw the bottom n cards from the deck
      * @param {integer} n -- the amount of cards to draw
      * @returns a list of drawn cards
      */
