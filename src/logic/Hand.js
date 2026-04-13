@@ -1,10 +1,5 @@
 
-const suitOrder = {
-  "♣": 0,
-  "♦": 1,
-  "♥": 2,
-  "♠": 3
-};
+import { SuitOrder } from "../logic/constants.js";
 
 export default class Hand {
     constructor(cards) {
@@ -43,7 +38,7 @@ export default class Hand {
      */
     sortBySuit() {
         this.cards.sort((a, b) => {
-            const suitDiff = suitOrder[a.suit] - suitOrder[b.suit];
+            const suitDiff = SuitOrder[a.suit] - SuitOrder[b.suit];
 
             if (suitDiff !== 0) {
                 return suitDiff;
