@@ -20,12 +20,6 @@ function testDeckSize() {
   }
 }
 
-function testDeckDisplay() {
-  const deck = new Deck();
-
-  console.log("Whole Deck:", deck.toString());
-}
-
 function testDeckDraw() {
   const deck = new Deck();
   const draw1 = deck.draw(1);

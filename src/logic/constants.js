@@ -28,5 +28,3 @@ export const SuitOrder = {
   "♥": 2,
   "♠": 3
 };
-
-export const HandType = {};

@@ -59,7 +59,7 @@ export default class Hand {
                 return rankDiff;
             }
 
-            return suitOrder[a.suit] - suitOrder[b.suit];
+            return SuitOrder[a.suit] - SuitOrder[b.suit];
         });
     }
 

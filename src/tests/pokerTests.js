@@ -2,7 +2,6 @@ import  Hand from "../logic/Hand.js";
 import Card from "../logic/Card.js";
 import { Suit, Rank } from "../logic/constants.js";
 import PokerEvaluator from "../logic/PokerEvaluator.js";
-import { HandType } from "../logic/constants.js";
 
 export default function runPokerTests() {
   console.log("~~~~Running Poker tests~~~~")

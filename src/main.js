@@ -12,6 +12,6 @@ const config = {
 
 new Phaser.Game(config);
 
-// runDeckTests();
-// runHandTests();
+runDeckTests();
+runHandTests();
 runPokerTests();
