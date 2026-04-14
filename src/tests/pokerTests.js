@@ -8,6 +8,7 @@ export default function runPokerTests() {
   console.log("~~~~Running Poker tests~~~~")
   testHighCard();
   testPair();
+  testTwoPair();
   testThreeOfKind();
   testFourOfKind();
   testFullHouse();
@@ -73,6 +74,42 @@ function testPair() {
     }
 }
 
+function testTwoPair() {
+    const k1 = new Card(Suit.HEARTS, Rank.KING);
+    const k2 = new Card(Suit.CLUBS, Rank.KING);
+    const s1 = new Card(Suit.DIAMONDS, Rank.SEVEN);
+    const s2 = new Card(Suit.HEARTS, Rank.SEVEN);
+
+    const mockDeck = [
+        k1,
+        k2,
+        s1,
+        new Card(Suit.SPADES, Rank.THREE),
+        s2
+    ];
+
+    const hand = new Hand(mockDeck);
+    const pokerEval = new PokerEvaluator(hand);
+
+    if (
+        pokerEval.cardsCounted.length !== 4 ||
+        !pokerEval.cardsCounted[0].isEqual(k1) ||
+        !pokerEval.cardsCounted[1].isEqual(k2) ||
+        !pokerEval.cardsCounted[2].isEqual(s1) ||
+        !pokerEval.cardsCounted[3].isEqual(s2) 
+    ) {
+        console.log("Correct two pair cards test FAILED");
+    } else {
+        console.log("Correct two pair cards test PASSED");
+    }
+
+    if (pokerEval.handType !== "two_pair") {
+        console.log("Two pair hand type test FAILED");
+    } else {
+        console.log("Two pair hand type test PASSED");
+    }
+}
+
 function testThreeOfKind() {
     const q1 = new Card(Suit.HEARTS, Rank.QUEEN);
     const q2 = new Card(Suit.CLUBS, Rank.QUEEN);
@@ -97,7 +134,7 @@ function testThreeOfKind() {
         console.log("Correct three of a kind cards test PASSED");
     }
 
-    if (pokerEval.handType !== "three_of_kind") {
+    if (pokerEval.handType !== "three_of_a_kind") {
         console.log("Three of a kind hand type test FAILED");
     } else {
         console.log("Three of a kind hand type test PASSED");
@@ -129,7 +166,7 @@ function testFourOfKind() {
         console.log("Correct four of a kind cards test PASSED");
     }
 
-    if (pokerEval.handType !== "four_of_kind") {
+    if (pokerEval.handType !== "four_of_a_kind") {
         console.log("Four of a kind hand type test FAILED");
     } else {
         console.log("Four of a kind hand type test PASSED");
