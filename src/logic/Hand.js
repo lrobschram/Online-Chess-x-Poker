@@ -1,4 +1,4 @@
-
+import Card from "./Card.js";
 import { SuitOrder } from "../logic/constants.js";
 
 export default class Hand {
@@ -73,5 +73,19 @@ export default class Hand {
         for (let i = 0; i < arr.length; i++) {
             console.log(`${i}: ${arr[i]}`);
         }
+    }
+
+    isEqual(otherHand) {
+        if (otherHand.cards.length !== this.cards.length) {
+            return false;
+        }
+
+        for (let i = 0; i < this.cards.length; i++) {
+            if ( !this.cards[i].isEqual(otherHand.cards[i]) ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

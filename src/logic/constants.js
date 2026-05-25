@@ -28,3 +28,15 @@ export const SuitOrder = {
   "♥": 2,
   "♠": 3
 };
+
+export const PokerHand = Object.freeze({
+  HIGH_CARD: { value: 1, label: "High Card" },
+  PAIR: { value: 2, label: "Pair" },
+  TWO_PAIR: { value: 3, label: "Two Pair" },
+  THREE_KIND: { value: 4, label: "Three of a Kind" },
+  STRAIGHT: { value: 5, label: "Straight" },
+  FLUSH: { value: 6, label: "Flush" },
+  FULL_HOUSE: { value: 7, label: "Full House" },
+  FOUR_KIND: { value: 8, label: "Four of a Kind" },
+  STRIAGHT_FLUSH: { value: 9, label: "Straight Flush" },
+});

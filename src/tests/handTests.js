@@ -3,7 +3,7 @@ import Card from "../logic/Card.js";
 import { Suit, Rank } from "../logic/constants.js";
 
 export default function runHandTests() {
-  console.log("~~~~Running Hand tests~~~~")
+  console.log("~~~~Running Hand tests~~~~");
   testHandSize();
   testAddCards();
   testDiscard();

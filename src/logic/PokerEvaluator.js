@@ -1,10 +1,17 @@
 import Card from "../logic/Card.js";
+import { PokerHand } from "../logic/constants.js";
 
 export default class PokerEvaluator {
 
+    /**
+     * Constructs a poker evaluator object to determine the poker hand of the given Hand object
+     * Creates fields for the PokerHand and a list of cards counted in it
+     * @param {Hand} hand - the hand to be scored
+     */
     constructor(hand) {
         this.cardsCounted =[];
         this.handType = this.evalHand(hand);
+        this.chips = this.chipCounter(this.cardsCounted);
     }
 
     /**
@@ -66,14 +73,14 @@ export default class PokerEvaluator {
 
     /**
      * Adds up all of the card ranks and returns their sum
-     * @param {List[Rank]} ranks -- a list of the current card ranks
-     * @returns the sum of all the ranks in the given list of ranks
+     * @param {List[Card]} cards -- a list of the current cards
+     * @returns the sum of all the ranks in the given list of cards
      */
-    chipCounter(ranks) {
+    chipCounter(cards) {
         let chipCount = 0;
 
-        for (const rank of ranks) {
-            chipCount += rank.value;
+        for (const card of cards) {
+            chipCount += card.rank.value;
         }
 
         return chipCount;
@@ -128,13 +135,13 @@ export default class PokerEvaluator {
             if (count[1] === 4) {
                 ranksCounted.push(count[0]);
                 this.selectRanks(cards, ranksCounted);
-                return "four_of_a_kind"
+                return PokerHand.FOUR_KIND;
             }
 
             if (count[1] === 2 && pair) {
                 ranksCounted.push(count[0]);
                 this.selectRanks(cards, ranksCounted);
-                return "two_pair";
+                return PokerHand.TWO_PAIR;
             }
 
             if (count[1] === 2) {
@@ -151,17 +158,17 @@ export default class PokerEvaluator {
 
         if (pair && threeKind) {
             this.selectRanks(cards, ranksCounted);
-            return "full_house";
+            return PokerHand.FULL_HOUSE;
         }
 
         if (threeKind) {
             this.selectRanks(cards, ranksCounted);
-            return "three_of_a_kind";
+            return PokerHand.THREE_KIND;
         }
 
         if (pair) {
             this.selectRanks(cards, ranksCounted);
-            return "pair";
+            return PokerHand.PAIR;
         }
 
         // ~~~ flushes + straights ~~~
@@ -178,23 +185,23 @@ export default class PokerEvaluator {
 
             if (flush && straight) {
                 this.cardsCounted = [...hand.cards];
-                return "straight_flush";
+                return PokerHand.STRAIGHT_FLUSH;
             } 
 
             if (straight) {
                 this.cardsCounted = [...hand.cards];
-                return "straight";
+                return PokerHand.STRAIGHT;
             }
 
             if (flush) {
                 this.cardsCounted = [...hand.cards];
-                return "flush";
+                return PokerHand.FLUSH;
             }
         }
 
         // ~~~ high card ~~~
         const highCard = this.calcHighest(cards);
         this.cardsCounted.push(highCard);
-        return "high_card";
+        return PokerHand.HIGH_CARD;
     }
 }

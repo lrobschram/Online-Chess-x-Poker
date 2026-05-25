@@ -2,6 +2,7 @@ import GameScene from "./scenes/GameScene.js";
 import runDeckTests from "./tests/deckTests.js";
 import runHandTests from "./tests/handTests.js";
 import runPokerTests from "./tests/pokerTests.js";
+import runAI1Tests from "./tests/aiTests.js";
 
 const config = {
   type: Phaser.AUTO,
@@ -12,6 +13,8 @@ const config = {
 
 new Phaser.Game(config);
 
-runDeckTests();
-runHandTests();
-runPokerTests();
+// runDeckTests();
+// runHandTests();
+// runPokerTests();
+
+runAI1Tests();

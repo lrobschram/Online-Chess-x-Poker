@@ -3,7 +3,7 @@ import Card from "../logic/Card.js";
 import { Suit, Rank } from "../logic/constants.js";
 
 export default function runDeckTests() {
-  console.log("~~~~Running Deck tests~~~~")
+  console.log("~~~~Running Deck tests~~~~");
   testDeckSize();
   testDeckDraw();
   testExcludeCtor();

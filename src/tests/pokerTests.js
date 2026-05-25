@@ -4,7 +4,7 @@ import { Suit, Rank } from "../logic/constants.js";
 import PokerEvaluator from "../logic/PokerEvaluator.js";
 
 export default function runPokerTests() {
-  console.log("~~~~Running Poker tests~~~~")
+  console.log("~~~~Running Poker tests~~~~");
   testHighCard();
   testPair();
   testTwoPair();
